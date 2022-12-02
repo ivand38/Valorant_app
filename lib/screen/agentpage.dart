@@ -59,8 +59,8 @@ class _AgentPageState extends State<AgentPage> {
                         child: ListTile(
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 10.0),
-                          leading: Image.network(_agents[index].agent_image.toString(),height: 150,width: 100),
-                          title: Text(_agents[index].title.toString()),
+                          leading: Image.network(_agents[index].display_icon.toString(),height: 150,width: 100),
+                          title: Text(_agents[index].displayName.toString()),
                           subtitle: Text(
                               'Role: ${_agents[index].role.toString()}'),
                            onTap: () {
@@ -68,10 +68,10 @@ class _AgentPageState extends State<AgentPage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => DetailPage(
-                                        title: _agents[index].title,
+                                        displayName:_agents[index].displayName,
                                         description: _agents[index].description,
                                         role: _agents[index].role,
-                                        agent_image: _agents[index].agent_image),
+                                        display_icon: _agents[index].display_icon),
                                     
                                   ),
 

@@ -5,11 +5,11 @@ import 'package:ta_ppb/models/agent.dart';
 import 'dart:convert';
 
 class DetailPage extends StatefulWidget {
-  final String? title;
+  final String? displayName;
   final String? description;
   final String? role;
-  final String? agent_image;
-  const DetailPage({Key? key,this.title,this.description,this.role,this.agent_image})
+  final String? display_icon;
+  const DetailPage({Key? key,this.displayName,this.description,this.role,this.display_icon})
       : super(key: key);
 
   @override
@@ -54,9 +54,9 @@ class _DetailPageState extends State<DetailPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(child: Image.network(widget.agent_image.toString(),cacheHeight: 300,cacheWidth: 200,)),
+                Center(child: Image.network(widget.display_icon.toString(),cacheHeight: 300,cacheWidth: 200,)),
                 SizedBox(height: 20),
-                Text(widget.title.toString(), style: 
+                Text(widget.displayName.toString(), style: 
                 TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold

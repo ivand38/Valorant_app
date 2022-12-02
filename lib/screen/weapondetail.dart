@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:ta_ppb/models/map.api.dart';
-import 'package:ta_ppb/models/map.dart';
+import 'package:ta_ppb/models/weapon.api.dart';
+import 'package:ta_ppb/models/weapon.dart';
 import 'dart:convert';
 
 class DetailPage extends StatefulWidget {
-  final String? map_name;
-  final String? map_description;
-  final String? map_image;
-  const DetailPage({Key? key,this.map_name,this.map_description,this.map_image})
+  final String? displayName;
+  final String? category;
+  final String? displayIcon;
+  final num? cost;
+  final num? fireRate;
+  final num? magazineSize;
+  final num? reloadTimeSeconds;
+  const DetailPage({Key? key,this.displayName,this.category,this.displayIcon,this.cost,this.fireRate,this.magazineSize,this.reloadTimeSeconds})
       : super(key: key);
 
   @override
@@ -16,16 +20,16 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  late List<Maps> _maps;
+  late List<Weapons> _weapons;
   bool _isLoading = true;
   @override
   void initState() {
     super.initState();
-    getMaps();
+    getWeapons();
   }
 
-  Future<void> getMaps() async {
-    _maps = await MapsApi.getMaps();
+  Future<void> getWeapons() async {
+    _weapons = await WeaponsApi.getWeapons();
     setState(() {
       _isLoading = false;
     });
@@ -52,15 +56,20 @@ class _DetailPageState extends State<DetailPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(child: Image.network(widget.map_image.toString(),cacheHeight: 200,cacheWidth: 300,)),
+                Center(child: Image.network(widget.displayIcon.toString(),cacheHeight: 200,cacheWidth: 300,)),
                 SizedBox(height: 20),
-                Text(widget.map_name.toString(), style: 
+                Text(widget.displayName.toString(), style: 
                 TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold
                 ),),
+                Text('Category: '+widget.category.toString(), style: 
+                TextStyle(
+                  fontSize: 16,
+                ),),
                 SizedBox(height: 20),
-                Expanded(child: Text(widget.map_description.toString()))
+                Text('Stats of this Weapon: \nCost: '+widget.cost.toString()+'\nFire Rate: '+widget.fireRate.toString()+'\nMagazine Size: '+widget.magazineSize.toString()+'\nReload Time Second: '+widget.reloadTimeSeconds.toString()),
+
               ],
             ),
           ),

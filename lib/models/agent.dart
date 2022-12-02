@@ -1,17 +1,17 @@
 class Agent {
-  final String? title;
+  final String? displayName;
   final String? description;
   final String? role;
-  final String? agent_image;
+  final String? display_icon;
 
-  Agent({this.title, this.description, this.role, this.agent_image});
+  Agent({this.displayName, this.description, this.role, this.display_icon});
 
   factory Agent.fromJson(dynamic json) {
     return Agent(
-        title: json['title'] as String,
+        displayName: json['displayName'] as String,
         description: json['description'] as String,
-        role: json['role'] as String,
-        agent_image: json['agent_image']['url'] as String);
+        role: json['role']['displayName'] as String,
+        display_icon: json['displayIcon'] as String);
   }
 
   static List<Agent> agentsFromSnapshot(List snapshot) {
@@ -22,6 +22,6 @@ class Agent {
 
   @override
   String toString(){
-    return 'Agent {title: $title, description: $description, role: $role, agent_image: $agent_image}';
+    return 'Agent {displayName: $displayName, description: $description, role: $role, display_icon: $display_icon}';
   }
 }

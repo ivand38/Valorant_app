@@ -4,10 +4,10 @@ import 'package:ta_ppb/models/agent.api.dart';
 import 'package:ta_ppb/models/agent.dart';
 import 'package:ta_ppb/screen/agentdetail.dart';
 import 'package:ta_ppb/screen/agentpage.dart';
-import 'package:ta_ppb/models/map.api.dart';
-import 'package:ta_ppb/models/map.dart';
-import 'package:ta_ppb/screen/mappage.dart';
-import 'package:ta_ppb/screen/mapdetail.dart';
+import 'package:ta_ppb/models/weapon.api.dart';
+import 'package:ta_ppb/models/weapon.dart';
+import 'package:ta_ppb/screen/weaponpage.dart';
+import 'package:ta_ppb/screen/weapondetail.dart';
 import 'dart:convert';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   late List<Agent> _agents;
   bool _isLoading = true;
   int currentIndex = 0;
-  final screens = [AgentPage(),MapPage()];
+  final screens = [AgentPage(),WeaponPage()];
 
   @override
   void initState() {
@@ -39,8 +39,8 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.transparent,
             onTap: (index) => setState(() => currentIndex = index),
             items: [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Agent'),
-              BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map')
+              BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Agent'),
+              BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Weapon')
             ]));
   }
 }
